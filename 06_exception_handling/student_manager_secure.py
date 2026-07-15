@@ -1,12 +1,15 @@
 from pathlib import Path
 current_folder = Path(__file__).parent
 file_path = current_folder / "students.txt"
+
 def add_student(student_name):
     try:
-        with open(file_path, "a") as file:
+        with open(file_path , "a") as file:
             file.write(student_name + "\n")
     except Exception as e:
-        print(f"An error occurred while adding the student: {e}")
+        print("student database not found")
+        with open(file_path, "w") as file:
+            file.write(student_name + "\n")
 def view_students():
     try:
         with open(file_path, "r") as file:
@@ -17,8 +20,9 @@ def view_students():
             if index==0:
                 print("No students found in the file.")
     except Exception as e:
+        print("student database not found")
         with open(file_path, "w") as file:
-            print(f"An error occurred while viewing students: {e}")
+            pass
 def search_student(student_name):
     try:
         with open(file_path, "r") as file:
@@ -29,7 +33,9 @@ def search_student(student_name):
             else:
                 print("Student Not Found")
     except Exception as e:
-        print(f"An error occurred while searching for the student: {e}")
+        print("student database not found")
+        with open(file_path, "w") as file:
+            pass
 def delete_student(student_name):
     student=[]
     with open(file_path, "r") as file:
@@ -59,6 +65,7 @@ def update_student(student_name, new_student_name):
         file_content = file.read()
         print("Updated file content:")
         print(file_content)
+
 if __name__ == "__main__":
     while True:
         print("\nStudent Manager")
@@ -69,23 +76,27 @@ if __name__ == "__main__":
         print("5. Update Student")
         print("6. Exit")
         choice = input("Enter your choice: ")
+        
+        if choice == "6":
+            print("Exiting the student manager.")
+            break
+        
+        
+        
         if choice == "1":
-            student_name = input("Enter student name: ").strip()
+            student_name = input("Enter student name: ").strip().lower()
             add_student(student_name)
         elif choice == "2":
             view_students()
         elif choice == "3":
-            student_name = input("Enter student name to search: ").strip().lower()
+            student_name = input("Enter student name: ").strip().lower()
             search_student(student_name)
         elif choice == "4":
-            student_name = input("Enter student name to delete: ").strip().lower()
+            student_name = input("Enter student name: ").strip().lower()
             delete_student(student_name)
         elif choice == "5":
-            student_name = input("Enter student name to update: ").strip().lower()
+            student_name = input("Enter student name: ").strip().lower()
             new_student_name = input("Enter new student name: ").strip().lower()
             update_student(student_name, new_student_name)
-        elif choice == "6":
-            break
         else:
-            print("Invalid choice. Please try again.")
-            
+            print("Invalid choice. Please select a valid option.") 
