@@ -1,0 +1,13 @@
+class Demo:
+
+    def __enter__(self):
+        print("Start")
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        print("Handled Exception")
+        return True
+
+with Demo():
+    print(10 / 0)
+
+print("Program Continues")
