@@ -10,7 +10,7 @@ df = pd.DataFrame({
 print(df)
 print(df.shape)
 df.info()
-df.describe()"""
+df.describe()
 df=pd.DataFrame({
     "Name": ["A", "B", "C"],
     "Age":  [20, 21, 27],
@@ -19,4 +19,10 @@ df=pd.DataFrame({
     "category": ["A", "B", "C"]
 })
 ages = df[df['Age'] > 25]
-print(ages)
+print(ages)"""
+df = pd.DataFrame({
+    "Name": ["A", "B", "C", "D"],
+    "Marks": [80, 95, 65, 90],
+    "Age": [20, 21, 19, 22]
+})
+print(df.loc[df["Marks"] > 80, ["Name", "Marks"]])
