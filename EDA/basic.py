@@ -67,8 +67,6 @@ plt.xlabel("Month")
 plt.ylabel("Sales")
 plt.title("Monthly Sales")
 plt.show()
-import numpy as np
-import matplotlib.pyplot as plt
 
 corr = df.corr(numeric_only=True)
 
